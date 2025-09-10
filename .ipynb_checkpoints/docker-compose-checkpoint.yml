@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+      - "8082:8082"      
+      - "8081:8081"      
+    environment:
+      - stt-network
+    networks:
+      - stt-network
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - stt-network
+
+networks:
+  stt-network:
+    driver: bridge
+  

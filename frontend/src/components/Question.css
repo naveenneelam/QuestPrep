@@ -1,0 +1,742 @@
+/* QuestionnaireApp.css */
+
+/* --- Hamburger Button --- */
+.hamburger-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
+  line-height: 0; /* Prevents button height issues */
+  color: #4b5563; /* Icon color */
+}
+.hamburger-button:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+.questionnaire-wrapper.dark .hamburger-button {
+  color: #fff; /* Icon color in dark mode */
+}
+.questionnaire-wrapper.dark .hamburger-button:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+
+/* --- Menu Overlay --- */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 40; /* Below menu, above content */
+}
+
+/* --- Menu Drawer --- */
+
+/* QuestionnaireApp.css */
+
+/* --- Menu Drawer --- */
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: relative;
+  width: 50px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: 0.4s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #4f46e5; /* or your dark mode highlight color */
+}
+
+input:checked + .slider::before {
+  transform: translateX(26px);
+}
+
+.switch-label {
+  font-size: 1rem;
+  color: #4b5563;
+}
+
+
+.menu-drawer {
+  position: fixed;
+  top: 0;
+  /* remove right: 0; */
+  left: 0; /* Position on the LEFT */
+  bottom: 0;
+  width: 280px;
+  max-width: 80%;
+  background-color: #ffffff;
+  /* Update box-shadow to be on the right side */
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Shadow on the right */
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  /* remove border-left */
+  border-right: 1px solid #e5e7eb; /* Add border on the RIGHT */
+}
+
+.questionnaire-wrapper.dark .menu-drawer {
+  background-color: #1f2937;
+  /* Update dark mode box-shadow */
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5); /* Shadow on the right */
+  /* remove dark mode border-left */
+  border-right: 1px solid #4b5563; /* Add dark mode border on the RIGHT */
+}
+
+/* Ensure menu header styles are still appropriate (no changes likely needed) */
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  /* Update border */
+  border-bottom: 1px solid #e5e7eb;
+  color: #111827;
+}
+.questionnaire-wrapper.dark .menu-header {
+  /* Update dark mode border */
+  border-bottom: 1px solid #4b5563;
+  color: #fff;
+}
+
+/* Rest of your CSS ... */
+
+
+.questionnaire-wrapper.dark .menu-header {
+  border-bottom: 1px solid #4b5563;
+  color: #fff;
+}
+
+.menu-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.close-menu-button {
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  line-height: 0;
+  cursor: pointer;
+  color: #6b7280;
+  border-radius: 9999px;
+}
+.close-menu-button:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+.questionnaire-wrapper.dark .close-menu-button {
+    color: #d1d5db;
+}
+.questionnaire-wrapper.dark .close-menu-button:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+
+/* --- Menu Navigation & Items --- */
+.menu-nav {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* Space between menu items */
+  flex-grow: 1; /* Allow nav to fill remaining space if needed */
+  overflow-y: auto; /* Add scroll if content overflows */
+}
+
+.menu-button {
+  /* Re-style nav buttons for vertical menu */
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem; /* Slightly larger radius */
+  border: 1px solid transparent; /* Base border */
+  text-align: left; /* Align text left */
+  font-size: 1rem;
+  font-weight: 500; /* Medium weight */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Space between icon and text */
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
+  color: #374151; /* Default text color */
+  background-color: #f9fafb; /* Light background */
+}
+
+.menu-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #e5e7eb;
+  color: #9ca3af;
+}
+
+.menu-button:not(:disabled):hover {
+   background-color: #f3f4f6; /* Slightly darker hover */
+   color: #111827;
+}
+
+/* Specific button colors (can reuse themes from original nav-buttons) */
+.menu-button:not(:disabled):nth-of-type(1) { /* Previous */
+    /* Optional: Add specific styling if desired */
+    color: #5b21b6;
+}
+.menu-button:not(:disabled):nth-of-type(2) { /* Next */
+    color: #0e7490;
+}
+.menu-button:not(:disabled):nth-of-type(3) { /* Random */
+    color: #78350f;
+}
+.menu-button.manage-menu-item:not(:disabled) { /* Manage */
+    color: #4b5563;
+    background-color: transparent;
+    border: 1px solid #d1d5db;
+    margin-top: auto; /* Pushes Manage button towards the bottom if nav grows */
+    /* Or add a fixed gap with a spacer div if preferred */
+}
+.menu-button.manage-menu-item:not(:disabled):hover {
+    background-color: #f3f4f6;
+    border-color: #9ca3af;
+}
+
+/* --- Base Styles & Container --- */
+.questionnaire-container {
+  min-height: 100vh;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-image 0.5s ease;
+  background-image: linear-gradient(to bottom, #f0f4f8, #e0e7ff, #f9fafb);
+}
+
+.questionnaire-motion-wrapper {
+  width: 100%;
+  max-width: 400px;
+}
+
+.questionnaire-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* --- Dark Mode Specific Styles --- */
+/* Apply 'dark' class to body or a top-level container */
+.dark .questionnaire-container {
+  background-image: linear-gradient(to bottom, #111827, #4c1d95, #000000);
+}
+
+.dark .questionnaire-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- Header & Title --- */
+.questionnaire-title-bar {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.dark .questionnaire-title-bar {
+  color: #fff;
+}
+
+.questionnaire-counter {
+  margin-bottom: 10px;
+  color: #555; /* Note: Original style didn't change for dark mode */
+}
+
+.dark .questionnaire-counter {
+   color: #aaa; /* Suggestion: Make it lighter in dark mode */
+}
+
+
+.questionnaire-instruction {
+  color: #6b7280;
+}
+
+.dark .questionnaire-instruction {
+  color: #d1d5db;
+}
+
+/* --- Dark Mode Toggle --- */
+.dark-mode-toggle {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
+  line-height: 0; /* Prevents button height issues */
+}
+
+.dark-mode-toggle:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.dark .dark-mode-toggle:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+/* --- Icons --- */
+.icon-medium {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.icon-small {
+ width: 1rem;
+ height: 1rem;
+}
+
+.dark-mode-toggle .icon-medium {
+  color: #4b5563; /* Moon color */
+}
+.dark .dark-mode-toggle .icon-medium {
+  color: #fff; /* Sun color */
+}
+
+
+/* --- Category Select --- */
+.category-select-wrapper {
+  margin-top: 1rem;
+}
+
+.category-select {
+  width: 100%;
+  background-color: rgba(249, 250, 251, 1);
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.dark .category-select {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  border: 1px solid #8b5cf6;
+}
+
+/* --- Question Display --- */
+
+.question-text-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(229, 231, 235, 1);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.dark .question-text-container {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.question-text {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.dark .question-text {
+  color: #fff;
+}
+
+/* --- Answer Input & Submit --- */
+
+.answer-input {
+  flex: 1;
+  background-color: rgba(249, 250, 251, 1);
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  resize: none; /* Prevent manual resize */
+  overflow: hidden; /* Hide scrollbars */
+  line-height: 1.5;
+  min-height: 2.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.auto-resize-textarea {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.answer-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+
+
+
+/*.answer-input {
+  flex: 1;
+  background-color: rgba(249, 250, 251, 1);
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+*/
+.dark .answer-input {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid #6b7280;
+}
+
+.submit-button {
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s, color 0.2s, cursor 0s, opacity 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none; /* Ensure button border is removed */
+}
+
+.submit-button:disabled {
+  background-color: rgba(107, 114, 128, 0.3);
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.submit-button:enabled {
+  background-color: rgba(52, 211, 153, 0.3);
+  color: #03554c;
+  cursor: pointer;
+}
+
+.submit-button:enabled:hover {
+  background-color: rgba(52, 211, 153, 0.5);
+  color: #065f46;
+}
+
+/* --- Submitted Answer Display --- */
+.submitted-answer-container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(229, 231, 235, 1);
+}
+
+.dark .submitted-answer-container {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.submitted-answer-heading {
+  font-size: 1.125rem;
+  font-weight: 600; /* Semibold is often 600 */
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}
+
+.dark .submitted-answer-heading {
+  color: #fff;
+}
+
+.submitted-answer-text {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.dark .submitted-answer-text {
+  color: #d1d5db;
+}
+
+.similarity-score-heading {
+  font-size: 1rem;
+  font-weight: 600; /* Semibold is often 600 */
+  color: #4b5563;
+}
+.dark .similarity-score-heading {
+    color: #fff;
+}
+
+.similarity-score-value {
+  color: #6ee7b7; /* Consider if this needs a dark mode adjustment */
+}
+
+.similarity-interpretation {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.dark .similarity-interpretation {
+  color: #d1d5db;
+}
+
+/* --- Navigation Buttons --- */
+.navigation-buttons-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.nav-button {
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s, color 0.2s, cursor 0s, opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center content within button */
+  gap: 0.5rem;
+  width: 32%;
+  border: none; /* Ensure button border is removed */
+}
+
+.nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nav-button:enabled {
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* Previous Button */
+.prev-button {
+  background-color: rgba(167, 139, 250, 0.3);
+  color: #5b21b6;
+}
+.prev-button:enabled:hover {
+  background-color: rgba(167, 139, 250, 0.5);
+  color: #4c1d95;
+}
+
+/* Next Button */
+.next-button {
+  background-color: rgba(56, 189, 248, 0.2);
+  color: #0e7490;
+}
+.next-button:enabled:hover {
+  background-color: rgba(56, 189, 248, 0.3);
+  color: #065f46; /* Original code had this, might be a typo? Consider #087f8b or similar if intended blue-family */
+}
+
+/* Random Button */
+.random-button {
+  background-color: rgba(252, 211, 77, 0.2);
+  color: #78350f;
+}
+.random-button:enabled:hover {
+  background-color: rgba(252, 211, 77, 0.3);
+  color: #b45309;
+}
+
+
+/* --- Manage Questions Button --- */
+.manage-button {
+  width: 100%;
+  background-color: transparent;
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: color 0.2s, background-color 0.2s, border-color 0.3s ease;
+  cursor: pointer; /* Assuming always enabled */
+}
+
+.dark .manage-button {
+  color: #d1d5db;
+  border: 1px solid #4b5563;
+}
+
+.manage-button:hover {
+  background-color: rgba(229, 231, 235, 0.7);
+  border-color: #d1d5db;
+  color: #4b5563;
+}
+
+.dark .manage-button:hover {
+  color: #fff;
+  background-color: rgba(107, 114, 128, 0.5);
+  border-color: #6b7280;
+}
+
+
+
+
+
+
+
+
+/* ---Create category --- */
+
+.radio-group-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4b5563; /* Match form label colors */
+  font-weight: 500;
+}
+.dark .radio-group-label {
+    color: #d1d5db;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.radio-option input[type="radio"] {
+  appearance: none; /* Hide default radio */
+  -webkit-appearance: none;
+  width: 1.25rem; /* 20px */
+  height: 1.25rem; /* 20px */
+  border: 2px solid #d1d5db; /* Gray border */
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  position: relative;
+  top: -1px; /* Align better with text */
+  transition: border-color 0.2s ease-in-out;
+}
+
+.dark .radio-option input[type="radio"] {
+    border-color: #6b7280; /* Darker border */
+    background-color: rgba(255, 255, 255, 0.1); /* Slight background */
+}
+
+
+.radio-option input[type="radio"]:checked {
+  border-color: #4f46e5; /* Highlight color when checked */
+}
+.dark .radio-option input[type="radio"]:checked {
+  border-color: #8b5cf6; /* Dark mode highlight */
+}
+
+/* Create the inner dot */
+.radio-option input[type="radio"]:checked::before {
+  content: '';
+  display: block;
+  width: 0.75rem; /* 12px */
+  height: 0.75rem; /* 12px */
+  background-color: #4f46e5; /* Highlight color */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: background-color 0.2s ease-in-out;
+}
+.dark .radio-option input[type="radio"]:checked::before {
+    background-color: #8b5cf6; /* Dark mode highlight */
+}
+
+.radio-option label {
+  color: #4b5563; /* Match form label colors */
+}
+.dark .radio-option label {
+  color: #d1d5db;
+}
+
+.form-field-group {
+    margin-bottom: 1rem; /* Space below each field group */
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #4b5563;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.dark .form-label {
+    color: #d1d5db;
+}
+
+.form-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between; /* Puts space between buttons */
+    gap: 1rem; /* Adds gap if they wrap */
+}
+/* Use existing button styles - adjust if needed */
+.form-back-button {
+    /* Example using manage-button style */
+    flex-grow: 1; /* Allow buttons to share space */
+    background-color: transparent;
+    color: #4b5563;
+    border: 1px solid #d1d5db;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: color 0.2s, background-color 0.2s, border-color 0.3s ease;
+    cursor: pointer;
+}
+.form-back-button:hover {
+    background-color: rgba(229, 231, 235, 0.7);
+    border-color: #d1d5db;
+    color: #4b5563;
+}
+.dark .form-back-button {
+    color: #d1d5db;
+    border: 1px solid #4b5563;
+}
+.dark .form-back-button:hover {
+    color: #fff;
+    background-color: rgba(107, 114, 128, 0.5);
+    border-color: #6b7280;
+}
+.form-submit-button {
+     flex-grow: 1; /* Allow buttons to share space */
+}

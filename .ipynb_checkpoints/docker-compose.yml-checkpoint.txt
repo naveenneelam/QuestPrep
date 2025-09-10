@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./backend
+    container_name: spring-boot-app
+    ports:
+      - "8081:8081"
+  frontend:
+    build: ./frontend
+    container_name: react-app
+    ports:
+      - "3000:80"  # Expose frontend on port 3000
+    depends_on:
+      - backend

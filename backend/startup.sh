@@ -12,11 +12,11 @@ if [ ! -f "$CRT" ] || [ ! -f "$KEY" ]; then
   mkdir -p "$SSL_DIR"
   openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -keyout "$KEY" -out "$CRT" \
-    -subj "/C=US/ST=State/L=City/O=Company/OU=Org/CN=103.102.234.6" \
+    -subj "/C=US/ST=State/L=City/O=Company/OU=Org/CN=localhost" \
     -addext "keyUsage=digitalSignature,keyEncipherment,nonRepudiation" \
     -addext "extendedKeyUsage=serverAuth" \
     -addext "basicConstraints=critical,CA:FALSE" \
-    -addext "subjectAltName=DNS:localhost,IP:103.102.234.6"
+    -addext "subjectAltName=DNS:localhost,IP:localhost"
 fi
 #    -config "$sslconf" -extensions v3_req
 
